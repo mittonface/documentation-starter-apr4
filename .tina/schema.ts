@@ -193,6 +193,11 @@ export const tinaConfig = defineConfig({
     return pack.TinaCloudCloudinaryMediaStore;
   },
   apiURL,
+  tinaioConfig: {
+    identityApiUrlOverride: "https://bm-identity.tinajs.dev",
+    contentApiUrlOverride: "https://bm-content.tinajs.dev",
+    frontendUrlOverride: "http://localhost:3002",
+  },
   cmsCallback: (cms) => {
     import("tinacms").then(({ RouteMappingPlugin }) => {
       const RouteMapping = new RouteMappingPlugin((collection, document) => {
