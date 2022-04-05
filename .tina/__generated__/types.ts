@@ -100,6 +100,7 @@ export type QueryGetDocumentListArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<DocumentFilter>;
 };
 
 
@@ -114,6 +115,72 @@ export type QueryGetDocsListArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<DocsFilter>;
+};
+
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type DocsBodyCalloutFilter = {
+  type?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyButtonFilter = {
+  type?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyVideoPlayerFilter = {
+  url?: InputMaybe<StringFilter>;
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type DocsBodyHeroFilter = {
+  backgroundImageUrl?: InputMaybe<ImageFilter>;
+  slogan?: InputMaybe<StringFilter>;
+  teaser?: InputMaybe<StringFilter>;
+  btnUrl?: InputMaybe<StringFilter>;
+  btnTxt?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyFeatureSectionFeatureListFilter = {
+  image?: InputMaybe<ImageFilter>;
+  title?: InputMaybe<StringFilter>;
+  desc?: InputMaybe<StringFilter>;
+};
+
+export type DocsBodyFeatureSectionFilter = {
+  featureList?: InputMaybe<DocsBodyFeatureSectionFeatureListFilter>;
+};
+
+export type DocsBodyFilter = {
+  Callout?: InputMaybe<DocsBodyCalloutFilter>;
+  Button?: InputMaybe<DocsBodyButtonFilter>;
+  VideoPlayer?: InputMaybe<DocsBodyVideoPlayerFilter>;
+  Hero?: InputMaybe<DocsBodyHeroFilter>;
+  FeatureSection?: InputMaybe<DocsBodyFeatureSectionFilter>;
+};
+
+export type DocsFilter = {
+  title?: InputMaybe<StringFilter>;
+  section?: InputMaybe<StringFilter>;
+  body?: InputMaybe<DocsBodyFilter>;
+};
+
+export type DocumentFilter = {
+  docs?: InputMaybe<DocsFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -149,6 +216,7 @@ export type CollectionDocumentsArgs = {
   first?: InputMaybe<Scalars['Float']>;
   last?: InputMaybe<Scalars['Float']>;
   sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<DocumentFilter>;
 };
 
 export type DocumentNode = DocsDocument;
